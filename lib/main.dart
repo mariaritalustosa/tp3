@@ -1,22 +1,34 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
-import 'package:url_launcher/url_launcher.dart';
-import 'package:tp3/homescreen.dart';
-
+import 'api.dart';
+import 'package:tp3/themes/themes_config.dart';
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class MyApp extends StatefulWidget {
+  final Api api = Api();
+
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'TMDB Demo',
-      theme: ThemeData(primarySwatch: Colors.deepPurple),
-      home: const HomePage(),
-    );
+  State<MyApp> createState() => _MyAppState(); 
+  }
+
+  class _MyAppState extends State<MyApp>{
+    bool isDarkMode = false;
+
+    void toogleTheme(){
+      setState((){
+        isDarkMode = !isDarkMode;
+      });
+    }
+
+    @override
+    Widget build(BuildContext context){
+      return MaterialApp(
+        title: 'FilmVibe',
+        darkTheme: ThemeConfig.darkTheme,
+      ),
+  }
   }
 }
