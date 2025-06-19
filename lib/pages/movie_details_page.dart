@@ -21,11 +21,34 @@ class MovieDetailsPage extends StatelessWidget{
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: List.generate(5, (index){
-                  
-                }
-              )
+                  return StatefulBuilder(
+                    builder: (context, setState){
+                      return IconButton(
+                        icon: Icon(
+                          index < rating ? Icons.star : Icons.star_border,
+                          color: Colors.amberAccent,
+                        ),
+                        onPressed: (){
+                          setState((){
+                            rating = index + 1.0;
+                          });
+                        },
+                      );
+                    },
+                    );
+                }),
+              ),
+              TextField(
+                controller: commentController,
+                maxLines: 5,
+                decoration: const InputDecoration(
+                  hintText: 'Escreva seu comentário...',
+                  border: OutlineInputBorder(),
+                ),
+              ),
             ],
           ),
+          
         )
       })
   }
