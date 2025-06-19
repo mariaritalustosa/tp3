@@ -102,8 +102,12 @@ class MovieDetailsPage extends StatelessWidget{
                 ),
               ],
             ),
-
-            
+            const SizedBox(height: 15),
+            const Text(
+              'Sinopse',
+              style: TextStyle(fontSize: 20),
+            ),
+            const SizedBox(height: 8),
           ],
         ),
         ),
