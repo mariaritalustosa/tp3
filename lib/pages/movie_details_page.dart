@@ -87,7 +87,23 @@ class MovieDetailsPage extends StatelessWidget{
             Chip(label: Text(
               'Lançado em: ${movie.releaseDate}',
               style: TextStyle(color: Colors.white),
-            ))
+            ),
+            backgroundColor: Colors.deepPurple,
+            ),
+            const SizedBox(height: 15),
+
+            Row(
+              children: [
+                const Icon(Icons.favorite, color: Colors.red),
+                const SizedBox(width: 8),
+                Text(
+                  movie.voteAverage.toStringAsFixed(1),
+                  style: TextStyle(fontSize: 15),
+                ),
+              ],
+            ),
+
+            
           ],
         ),
         ),
