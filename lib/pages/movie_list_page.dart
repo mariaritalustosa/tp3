@@ -54,7 +54,7 @@ class _MovieListPageState extends State <MovieListPage>{
                     style: const TextStyle(fontSize: 12),
                       ),
                      const SizedBox(height: 3),
-                     Text('Nota: ${movie.voteAverage}'),
+                     Text('Nota: ${movie.voteAverage.toStringAsFixed(1)}'),
                     ],
                   ),
                   isThreeLine: true,
