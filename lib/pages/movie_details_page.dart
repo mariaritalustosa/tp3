@@ -42,13 +42,25 @@ class MovieDetailsPage extends StatelessWidget{
                 controller: commentController,
                 maxLines: 5,
                 decoration: const InputDecoration(
-                  hintText: 'Escreva seu comentário...',
+                  hintText: 'Escreva sua Crítica...',
                   border: OutlineInputBorder(),
                 ),
               ),
             ],
           ),
-          
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: Text('Cancelar'),
+            ),
+            ElevatedButton(
+              onPressed: (){
+                print('Nota: $rating');
+                print('Crítica: ${commentController}');
+                Navigator.pop(context);
+              }, child: Text('Enviar'),
+            ),
+          ],
         )
       })
   }
