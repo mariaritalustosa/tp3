@@ -58,11 +58,40 @@ class MovieDetailsPage extends StatelessWidget{
                 print('Nota: $rating');
                 print('Crítica: ${commentController}');
                 Navigator.pop(context);
-              }, child: Text('Enviar'),
+              }, 
+              child: Text('Enviar'),
             ),
           ],
-        )
-      })
+        );
+      },
+    );
+  }
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text(movie.title)),
+      body: Padding(
+        padding: const EdgeInsets.all(15.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Center(
+              child: Image.network(
+                'https://image.tmdb.org/t/p/w300${movie.posterPath}',
+                height: 200,
+                fit: BoxFit.cover,
+              ),
+            ),
+            const SizedBox(height: 20),
+            
+            Chip(label: Text(
+              'Lançado em: ${movie.releaseDate}',
+              style: TextStyle(color: Colors.white),
+            ))
+          ],
+        ),
+        ),
+    )
   }
   }
 }
