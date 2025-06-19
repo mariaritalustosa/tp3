@@ -45,7 +45,19 @@ class _MovieListPageState extends State <MovieListPage>{
                         )
                       : const Icon(Icons.movie),
                   title: Text(movie.title),
-                  subtitle: Text('Nota: ${movie.voteAverage}'),
+                  subtitle: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(movie.overview.length > 100
+                      ? '${movie.overview.substring(0, 100)}...'
+                      : movie.overview,
+                    style: const TextStyle(fontSize: 12),
+                      ),
+                     const SizedBox(height: 3),
+                     Text('Nota: ${movie.voteAverage}'),
+                    ],
+                  ),
+                  isThreeLine: true,
                 );
               },
             );
