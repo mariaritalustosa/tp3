@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tp3/pages/home_page.dart';
 import 'package:tp3/pages/movie_list_page.dart';
 
 void main() {
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.deepPurple,
         useMaterial3: true,
       ),
-      home: const MovieListPage(),
+      home: const HomePage(),
       debugShowCheckedModeBanner: false,
     );
   }
