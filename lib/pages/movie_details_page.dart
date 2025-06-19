@@ -11,7 +11,23 @@ class MovieDetailsPage extends StatelessWidget{
     final TextEditingController commentController = TextEditingController();
 
     showDialog(
-      context: context, builder: builder)
+      context: context,
+      builder: (context){
+        return AlertDialog(
+          title: const Text('Deixe aqui sua opinião'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: List.generate(5, (index){
+                  
+                }
+              )
+            ],
+          ),
+        )
+      })
   }
   }
 }
