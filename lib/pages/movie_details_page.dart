@@ -164,7 +164,16 @@ class _MovieDetailsPageState extends State<MovieDetailsPage>{
               ),
               ElevatedButton(
                 onPressed: () async{
-                  final upatedComment
+                  final upatedComment = comment.copyWith(
+                    commentText: editController.text,
+                    rating: editRating,
+                  );
+                  await widget.db.updateComment(upatedComment);
+                  Navigator.pop(context);
+                  setState(() {
+                    _loadComments();
+                  });
+                  ScaffoldMessenger.of(context)
                 }, child: child)
           ],
   @override
