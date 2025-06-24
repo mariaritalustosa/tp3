@@ -108,10 +108,20 @@ class MovieDetailsPage extends StatelessWidget{
               style: TextStyle(fontSize: 20),
             ),
             const SizedBox(height: 8),
+            Text(
+              movie.overview,
+              style: const TextStyle(fontSize: 16),
+            ),
+            const Spacer(),
+              Center(
+                child: ElevatedButton(
+                  onPressed: () => _showReviewDialog(context),
+                  child: const Text('Deixe sua opinião sobre o filme'),
+              ),
+              ),
           ],
         ),
         ),
-    )
+    );
   }
   }
-}

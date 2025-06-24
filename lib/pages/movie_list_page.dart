@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tp3/models/movie_model.dart';
 import 'package:tp3/services/api_service.dart';
+import 'package:tp3/pages/movie_details_page.dart';
 
 class MovieListPage extends StatefulWidget{
   const MovieListPage({super.key});
@@ -58,6 +59,7 @@ class _MovieListPageState extends State <MovieListPage>{
                     ],
                   ),
                   isThreeLine: true,
+                  
                 );
               },
             );
