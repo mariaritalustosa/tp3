@@ -5,7 +5,7 @@ import 'package:tp3/services/app_database.dart';
 class MovieDetailsPage extends StatelessWidget{
   final Movie movie;
   final AppDataBase db;
-  
+
   const MovieDetailsPage({super.key, required this.movie});
   
   void _showReviewDialog(BuildContext context){
@@ -55,6 +55,13 @@ class MovieDetailsPage extends StatelessWidget{
               onPressed: () => Navigator.pop(context),
               child: Text('Cancelar'),
             ),
+            await db.insertComment(
+              CommentsCompanion.insert(
+                movieId: movie.id,
+                rating: rating,
+                text: commentController.text,
+              ),
+            );
             ElevatedButton(
               onPressed: (){
                 print('Nota: $rating');
