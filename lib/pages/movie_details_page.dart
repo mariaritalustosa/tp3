@@ -4,9 +4,9 @@ import 'package:tp3/services/app_database.dart';
 
 class MovieDetailsPage extends StatelessWidget{
   final Movie movie;
-  final AppDataBase db;
+  final AppDatabase db;
 
-  const MovieDetailsPage({super.key, required this.movie});
+  const MovieDetailsPage({super.key, required this.movie, required this.db,});
   
   void _showReviewDialog(BuildContext context){
     double rating = 0;
@@ -55,20 +55,28 @@ class MovieDetailsPage extends StatelessWidget{
               onPressed: () => Navigator.pop(context),
               child: Text('Cancelar'),
             ),
-            await db.insertComment(
-              CommentsCompanion.insert(
-                movieId: movie.id,
-                rating: rating,
-                text: commentController.text,
-              ),
-            );
             ElevatedButton(
-              onPressed: (){
-                print('Nota: $rating');
-                print('Crítica: ${commentController}');
+              onPressed: () async{
+                if(rating == 0 || commentController.text.isEmpty){
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Dê uma nota e escreva sua opinião')),
+                  );
+                  return;
+                }
+                await db.insertComment(
+                  CommentsCompanion.insert(
+                    movieId: movie.id,
+                    rating: rating,
+                    commentText: commentController.text,
+                  ),
+                );
                 Navigator.pop(context);
-              }, 
-              child: Text('Enviar'),
+
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Comentário salvo com sucesso!!')),
+                );
+              },
+                child: Text('Enviar'),
             ),
           ],
         );

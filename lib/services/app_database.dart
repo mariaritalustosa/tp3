@@ -20,5 +20,27 @@ class AppDatabase extends _$AppDatabase{
   @override
   int get schemaVersion => 1;
 
-  
+  Future<int> insertComment(CommentsCompanion comment){
+    return into(comments).insert(comment);
+  }
+
+  Future<List<Comment>> getCommentsByMovie(int movieId){
+    return (select(comments)..where((c) => c.movieId.equals(movieId))).get();
+  }
+
+  Future<bool> updateComment(Comment comment){
+    return update(comments).replace(comment);
+  }
+
+  Future<int> deleteComment(int id){
+    return (delete(comments)..where((c) => c.id.equals(id))).go();
+  }
+}
+
+LazyDatabase _openConnection(){
+  return LazyDatabase(() async{
+    final dbFolder = await getApplicationDocumentsDirectory();
+    final file = File(p.join(dbFolder.path, 'app.sqlite'));
+    return NativeDatabase(file);
+  });
 }
