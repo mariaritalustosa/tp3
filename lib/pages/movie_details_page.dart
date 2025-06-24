@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:tp3/models/movie_model.dart';
+import 'package:tp3/services/app_database.dart';
 
 class MovieDetailsPage extends StatelessWidget{
   final Movie movie;
-
+  final AppDataBase db;
+  
   const MovieDetailsPage({super.key, required this.movie});
   
   void _showReviewDialog(BuildContext context){
