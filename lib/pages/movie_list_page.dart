@@ -59,7 +59,13 @@ class _MovieListPageState extends State <MovieListPage>{
                     ],
                   ),
                   isThreeLine: true,
-                  
+                  onTap: (){
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => MovieDetailsPage(movie: movie),
+                      ),
+                      );
+                  },
                 );
               },
             );
