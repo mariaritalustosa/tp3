@@ -28,7 +28,11 @@ class _MovieListPageState extends State <MovieListPage>{
         body: FutureBuilder(
           future: _futureMovies,
            builder: (context,snapshot){
-             if(!snapshot.hasData || snapshot.data!.isEmpty){
+            if(snapshot.connectionState == ConnectionState.waiting){
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            } else if(!snapshot.hasData || snapshot.data!.isEmpty){
               return Center(
                 child: Text('Nenhum filme encontrado'),
               );
