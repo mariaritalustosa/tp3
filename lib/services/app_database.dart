@@ -12,3 +12,13 @@ class Comments extends Table{
   RealColumn get rating => real()();
   TextColumn get commentText => text()();
 }
+
+@DriftDatabase(tables: [Comments])
+class AppDatabase extends _$AppDatabase{
+  AppDatabase() : super(_openConnection());
+
+  @override
+  int get schemaVersion => 1;
+
+  
+}
