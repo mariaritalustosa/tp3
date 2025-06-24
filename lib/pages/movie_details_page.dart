@@ -121,7 +121,6 @@ class _MovieDetailsPageState extends State<MovieDetailsPage>{
                   return StatefulBuilder(
                     builder: (context, setState) {
                       return IconButton(
-                        icon: Icon(
                           icon: Icon(
                             index < editRating ? Icons.star : Icons.star_border,
                             color: Colors.amberAccent,
@@ -173,13 +172,21 @@ class _MovieDetailsPageState extends State<MovieDetailsPage>{
                   setState(() {
                     _loadComments();
                   });
-                  ScaffoldMessenger.of(context)
-                }, child: child)
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Comentário editado com sucesso'))
+                  );
+                }, 
+                child: Text('Salvar'),
+                ),
           ],
+        );
+      },
+    );
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(movie.title)),
+      appBar: AppBar(title: Text(widget.movie.title)),
       body: Padding(
         padding: const EdgeInsets.all(15.0),
         child: Column(
@@ -187,15 +194,15 @@ class _MovieDetailsPageState extends State<MovieDetailsPage>{
           children: [
             Center(
               child: Image.network(
-                'https://image.tmdb.org/t/p/w300${movie.posterPath}',
-                height: 200,g
+                'https://image.tmdb.org/t/p/w300${widget.movie.posterPath}',
+                height: 200,
                 fit: BoxFit.cover,
               ),
             ),
             const SizedBox(height: 20),
             
             Chip(label: Text(
-              'Lançado em: ${movie.releaseDate}',
+              'Lançado em: ${widget.movie.releaseDate}',
               style: TextStyle(color: Colors.white),
             ),
             backgroundColor: Colors.deepPurple,
@@ -207,7 +214,7 @@ class _MovieDetailsPageState extends State<MovieDetailsPage>{
                 const Icon(Icons.favorite, color: Colors.red),
                 const SizedBox(width: 8),
                 Text(
-                  movie.voteAverage.toStringAsFixed(1),
+                  widget.movie.voteAverage.toStringAsFixed(1),
                   style: TextStyle(fontSize: 15),
                 ),
               ],
@@ -219,7 +226,7 @@ class _MovieDetailsPageState extends State<MovieDetailsPage>{
             ),
             const SizedBox(height: 8),
             Text(
-              movie.overview,
+              widget.movie.overview,
               style: const TextStyle(fontSize: 16),
             ),
             const Spacer(),
