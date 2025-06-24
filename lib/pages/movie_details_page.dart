@@ -24,7 +24,7 @@ class _MovieDetailsPageState extends State<MovieDetailsPage>{
   void _loadComments(){
     _commentsFuture = widget.db.getCommentsByMovie(widget.movie.id);
   }
-  
+
   void _showReviewDialog(BuildContext context){
     double rating = 0;
     final TextEditingController commentController = TextEditingController();
@@ -80,15 +80,17 @@ class _MovieDetailsPageState extends State<MovieDetailsPage>{
                   );
                   return;
                 }
-                await db.insertComment(
+                await widget.db.insertComment(
                   CommentsCompanion.insert(
-                    movieId: movie.id,
+                    movieId: widget.movie.id,
                     rating: rating,
                     commentText: commentController.text,
                   ),
                 );
                 Navigator.pop(context);
-
+                setState(() {
+                  _loadComments();
+                });
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(content: Text('Comentário salvo com sucesso!!')),
                 );
@@ -99,6 +101,20 @@ class _MovieDetailsPageState extends State<MovieDetailsPage>{
         );
       },
     );
+  }
+
+  void _showEditDeeleteDialog(Comment comment){
+    final TextEditingController editController = TextEditingController(text: comment.commentText);
+    double editRating = comment.rating;
+
+    showDialog(
+      context: context,
+      builder: (context){
+        return AlertDialog(
+          title: const Text('Editar comentário'),
+        )
+      }
+      )
   }
   @override
   Widget build(BuildContext context) {

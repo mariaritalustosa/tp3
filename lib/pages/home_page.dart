@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:tp3/services/app_database.dart';
 import 'movie_list_page.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class HomePage extends StatelessWidget{
-  const HomePage({super.key});
+  final AppDatabase db;
+
+  const HomePage({super.key, required this.db});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +29,7 @@ class HomePage extends StatelessWidget{
                 onPressed: (){
                   Navigator.push(context,
                     MaterialPageRoute(
-                      builder: (context) => const MovieListPage(),
+                      builder: (context) =>  MovieListPage(db: db),
                     ),
                   );
                 }, child: const Padding(
