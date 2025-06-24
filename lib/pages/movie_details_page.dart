@@ -145,6 +145,16 @@ class _MovieDetailsPageState extends State<MovieDetailsPage>{
               ),
             ],
           ),
+          actions: [
+            TextButton(
+              onPressed: () async {
+                await widget.db.deleteComment(comment.id);
+                Navigator.pop(context);
+                setState(() {
+                  _loadComments();
+                });
+              }, child: child)
+          ],
   @override
   Widget build(BuildContext context) {
     return Scaffold(
