@@ -159,7 +159,13 @@ class _MovieDetailsPageState extends State<MovieDetailsPage>{
               },
                child: const Text('Excluir', style: TextStyle(color: Colors.red)),
               ),
-              TextButton(onPressed: onPressed, child: child)
+              TextButton(onPressed: () => Navigator.pop(context),
+               child: const Text('Cancelar'),
+              ),
+              ElevatedButton(
+                onPressed: () async{
+                  final upatedComment
+                }, child: child)
           ],
   @override
   Widget build(BuildContext context) {
@@ -173,7 +179,7 @@ class _MovieDetailsPageState extends State<MovieDetailsPage>{
             Center(
               child: Image.network(
                 'https://image.tmdb.org/t/p/w300${movie.posterPath}',
-                height: 200,
+                height: 200,g
                 fit: BoxFit.cover,
               ),
             ),
