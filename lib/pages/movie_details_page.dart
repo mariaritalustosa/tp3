@@ -112,6 +112,25 @@ class _MovieDetailsPageState extends State<MovieDetailsPage>{
       builder: (context){
         return AlertDialog(
           title: const Text('Editar comentário'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: List.generate(5, (index){
+                  return StatefulBuilder(
+                    builder: (context, setState) {
+                      return IconButton(
+                        icon: Icon(
+                          icon: Icon(
+                            index < editRating
+                          )
+                        ))
+                    });))
+                }
+              )
+            ],
+          ),
         )
       }
       )
