@@ -153,7 +153,13 @@ class _MovieDetailsPageState extends State<MovieDetailsPage>{
                 setState(() {
                   _loadComments();
                 });
-              }, child: child)
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Comentário excluído')),
+                );
+              },
+               child: const Text('Excluir', style: TextStyle(color: Colors.red)),
+              ),
+              TextButton(onPressed: onPressed, child: child)
           ],
   @override
   Widget build(BuildContext context) {
