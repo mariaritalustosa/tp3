@@ -123,18 +123,28 @@ class _MovieDetailsPageState extends State<MovieDetailsPage>{
                       return IconButton(
                         icon: Icon(
                           icon: Icon(
-                            index < editRating
-                          )
-                        ))
-                    });))
-                }
-              )
+                            index < editRating ? Icons.star : Icons.star_border,
+                            color: Colors.amberAccent,
+                          ),
+                          onPressed: (){
+                            setState(() {
+                              editRating = index + 1.0;
+                            });
+                          },
+                        );
+                    },
+                  );
+                }),
+              ),
+              TextField(
+                controller: editController,
+                maxLines: 5,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                ),
+              ),
             ],
           ),
-        )
-      }
-      )
-  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
