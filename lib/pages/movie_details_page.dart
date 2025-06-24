@@ -2,11 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:tp3/models/movie_model.dart';
 import 'package:tp3/services/app_database.dart';
 
-class MovieDetailsPage extends StatelessWidget{
+class MovieDetailsPage extends StatefulWidget{
   final Movie movie;
   final AppDatabase db;
 
   const MovieDetailsPage({super.key, required this.movie, required this.db,});
+
+  @override
+  State<MovieDetailsPage> createState() => _MovieDetailsPageState();
+}
+
+class _MovieDetailsPageState extends State<MovieDetailsPage>{
   
   void _showReviewDialog(BuildContext context){
     double rating = 0;

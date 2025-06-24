@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:tp3/models/movie_model.dart';
 import 'package:tp3/services/api_service.dart';
 import 'package:tp3/pages/movie_details_page.dart';
+import 'package:tp3/services/app_database.dart';
 
 class MovieListPage extends StatefulWidget{
-  const MovieListPage({super.key});
+  final AppDatabase db;
+  const MovieListPage({super.key, required this.db});
 
   @override
   State<MovieListPage> createState() => _MovieListPageState();
@@ -66,7 +68,7 @@ class _MovieListPageState extends State <MovieListPage>{
                   onTap: (){
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (_) => MovieDetailsPage(movie: movie),
+                      MaterialPageRoute(builder: (_) => MovieDetailsPage(movie: movie, db: widget.db),
                       ),
                       );
                   },
