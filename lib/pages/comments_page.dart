@@ -26,6 +26,44 @@ class _CommentsPageState extends State<CommentsPage>{
     });
   }
 
-  void _showEditDeeleteDialog(Comment comment)
+  void _showEditDeeleteDialog(Comment comment){
+    final TextEditingController editController = TextEditingController(text: comment.commentText);
+    double editRating = comment.rating;
+
+    showDialog(
+      context: context, 
+      builder: (context){
+        return AlertDialog(
+          title: const Text('Editar comentário'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: List.generate(5, (index){
+                  return StatefulBuilder(builder: (context, setState) {
+                    return IconButton(
+                      icon: Icon(
+                        index < editRating ? Icons.star : Icons.star_border,
+                        color: Colors.amberAccent,
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          editRating = index + 1.0;
+                        });
+                      },
+                      );   
+                  },
+                  );
+                }),
+              ),
+              const SizedBox(height: 10),
+              TextField()
+            ],
+          ),
+        )
+      }
+      )
+  }
 
 }
