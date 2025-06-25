@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       return MaterialApp(
       title: 'Catalogo',
       theme: ThemeData(
-        primarySwatch: Colors.deepPurple,
+        primarySwatch: Colors.green,
         useMaterial3: true,
         brightness: Brightness.light,
       ),

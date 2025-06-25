@@ -153,14 +153,18 @@ class _MovieDetailsPageState extends State<MovieDetailsPage>{
               Center(
               child: ElevatedButton(
                 onPressed: (){
-                  Navigator.push(context,
-                 MaterialPageRoute(builder: 
-                 (_) => CommentsPage(
-                  movieId: widget.movie.id, 
-                  db: widget.db,
-                  ),
-                 ),
-                 );
+                  Navigator.of(context).push(PageRouteBuilder(
+                    pageBuilder: (context, animation, secondaryAnimation) => CommentsPage(
+                      movieId: widget.movie.id, 
+                    db: widget.db,
+                    ),
+                    transitionsBuilder:(context, animation, secondaryAnimation, child){
+                      return FadeTransition(
+                        opacity: animation,
+                        child: child,
+                        );
+                    }
+                  ));
                 },
                 child: Text('Ver comentários'),
                 ),

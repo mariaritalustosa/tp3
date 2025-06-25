@@ -43,11 +43,16 @@ class HomePage extends StatelessWidget{
               const SizedBox(height: 30),
               ElevatedButton(
                 onPressed: (){
-                  Navigator.push(context,
-                    MaterialPageRoute(
-                      builder: (context) =>  MovieListPage(db: db),
-                    ),
+                  Navigator.of(context).push(PageRouteBuilder(
+                    pageBuilder: (context, animation, secondaryAnimation) =>
+                    MovieListPage(db: db),
+                  transitionsBuilder: 
+                  (context, animation, secondaryAnimation, child) { 
+                  return FadeTransition(opacity: animation,
+                  child: child,
                   );
+                  },
+                  ));
                 }, child: const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
                   child: Text(
