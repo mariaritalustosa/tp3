@@ -22,7 +22,7 @@ O **CineSpot** permite listar filmes, visualizar detalhes e gerenciar comentári
 ## ⚙️ Como executar
 
 ### 1. Clone o repositório para sua máquina
-git clone https://github.com/seu-usuario/cinespot.git
+git clone https://github.com/seu-usuario/tp3.git
 
 ### 2. Acesse a pasta do projeto
 cd cinespot
