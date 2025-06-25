@@ -58,9 +58,34 @@ class _CommentsPageState extends State<CommentsPage>{
                 }),
               ),
               const SizedBox(height: 10),
-              TextField()
+              TextField(
+                controller: editController,
+                maxLines: 5,
+                decoration: const InputDecoration(
+                  hintText: 'Escreva sua crítica...',
+                  border: OutlineInputBorder(),
+                ),
+              ),
             ],
           ),
+          actions: [
+            TextButton(
+              onPressed: () async{
+                await widget.db.deleteComment(comment.id);
+                Navigator.pop(context);
+                _loadComments();
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Comentário excluído com sucesso')),
+                );
+              },
+               child: Text('Excluir', style: TextStyle(color: Colors.red)),
+               ),
+               TextButton(
+                onPressed: () => Navigator.pop(context),
+                 child: Text('Cancelar'),
+                 ),
+                 ElevatedButton(onPressed: onPressed, child: child)
+          ],
         )
       }
       )
