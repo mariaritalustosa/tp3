@@ -25,7 +25,7 @@ O **CineSpot** permite listar filmes, visualizar detalhes e gerenciar comentári
 git clone https://github.com/seu-usuario/tp3.git
 
 ### 2. Acesse a pasta do projeto
-cd cinespot
+cd tp3
 
 ### 3. Instale as dependências do Flutter
 flutter pub get
