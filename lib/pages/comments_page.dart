@@ -26,7 +26,7 @@ class _CommentsPageState extends State<CommentsPage>{
     });
   }
 
-  void _showEditDeeleteDialog(Comment comment){
+  void _showEditDeleteDialog(Comment comment){
     final TextEditingController editController = TextEditingController(text: comment.commentText);
     double editRating = comment.rating;
 
@@ -117,5 +117,34 @@ class _CommentsPageState extends State<CommentsPage>{
     );
   }
 
-  
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Comentários')),
+      body: FutureBuilder<List<Comment>>(
+        future: _commentsFuture,
+        builder:(context, snapshot) {
+          if(snapshot.connectionState == ConnectionState.waiting){
+            return const Center(child: CircularProgressIndicator());
+          } else if(!snapshot.hasData || snapshot.data!.isEmpty){
+            return const Center(child: Text('Nenhum comentário ainda'));
+          } else{
+            final comments = snapshot.data!;
+            return ListView.separated(
+              itemCount: comments.length,
+              separatorBuilder: (_, _) => const Divider(),
+              itemBuilder: (context, index){
+                final comment = comments[index];
+                return ListTile(
+                  leading: _buildStarRow(comment.rating),
+                  title: Text(comment.commentText),
+                  onTap: () => _showEditDeleteDialog(comment),
+                );
+              },
+              );
+          }
+        },
+      ),
+    );
+  }
 }
