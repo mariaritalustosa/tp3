@@ -13,17 +13,12 @@ class MovieDetailsPage extends StatefulWidget{
 }
 
 class _MovieDetailsPageState extends State<MovieDetailsPage>{
-  late Future<List<Comment>> _commentsFuture;
 
   @override
   void initState(){
     super.initState();
-    _loadComments();
   }
 
-  void _loadComments(){
-    _commentsFuture = widget.db.getCommentsByMovie(widget.movie.id);
-  }
 
   void _showReviewDialog(BuildContext context){
     double rating = 0;
@@ -88,9 +83,7 @@ class _MovieDetailsPageState extends State<MovieDetailsPage>{
                   ),
                 );
                 Navigator.pop(context);
-                setState(() {
-                  _loadComments();
-                });
+      
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(content: Text('Comentário salvo com sucesso!!')),
                 );
