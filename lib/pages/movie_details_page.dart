@@ -118,7 +118,7 @@ class _MovieDetailsPageState extends State<MovieDetailsPage>{
               'Lançado em: ${widget.movie.releaseDate}',
               style: TextStyle(color: Colors.white),
             ),
-            backgroundColor: Colors.deepPurple,
+            backgroundColor: Colors.green,
             ),
             const SizedBox(height: 15),
 

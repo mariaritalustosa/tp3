@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:tp3/services/app_database.dart';
+import 'package:tp3/services/theme_provider.dart';
 import 'movie_list_page.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget{
   final AppDatabase db;
@@ -10,14 +12,28 @@ class HomePage extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
     return Scaffold(
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(32.0),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(
+      appBar: AppBar(
+                 actions: [
+                  IconButton(
+                    icon: Icon(
+                      themeProvider.themeMode == ThemeMode.dark
+                      ? Icons.brightness_7
+                      : Icons.brightness_2,
+                    ),
+                    onPressed: () {
+                      themeProvider.toogleTheme();
+                    },
+                    tooltip: 'Alterar tema',
+                  ),
+                ],
+          ),
+              body: Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
                 'CineSpot',
                 style: GoogleFonts.merriweather(
                   fontSize: 30,
@@ -38,11 +54,11 @@ class HomePage extends StatelessWidget{
                     'Ver filmes populares',
                     style: TextStyle(fontSize: 18),
                   ),
-                  ),
+                ),
               ),
             ],
-          ),),
-      ),
+           ),
+        ),
     );
   }
 }
