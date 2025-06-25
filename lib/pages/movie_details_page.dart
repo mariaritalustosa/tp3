@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tp3/models/movie_model.dart';
 import 'package:tp3/services/app_database.dart';
+import 'comments_page.dart';
 
 class MovieDetailsPage extends StatefulWidget{
   final Movie movie;
@@ -147,6 +148,22 @@ class _MovieDetailsPageState extends State<MovieDetailsPage>{
                   onPressed: () => _showReviewDialog(context),
                   child: const Text('Deixe sua opinião sobre o filme'),
               ),
+              ),
+              const SizedBox(height: 10),
+              Center(
+              child: ElevatedButton(
+                onPressed: (){
+                  Navigator.push(context,
+                 MaterialPageRoute(builder: 
+                 (_) => CommentsPage(
+                  movieId: widget.movie.id, 
+                  db: widget.db,
+                  ),
+                 ),
+                 );
+                },
+                child: Text('Ver comentários'),
+                ),
               ),
           ],
         ),
