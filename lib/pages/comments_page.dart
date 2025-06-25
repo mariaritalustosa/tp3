@@ -84,11 +84,38 @@ class _CommentsPageState extends State<CommentsPage>{
                 onPressed: () => Navigator.pop(context),
                  child: Text('Cancelar'),
                  ),
-                 ElevatedButton(onPressed: onPressed, child: child)
+                 ElevatedButton(onPressed: () async{
+                  final updateComment = comment.copyWith(
+                    commentText: editController.text,
+                    rating: editRating,
+                  );
+                  await widget.db.updateComment(updateComment);
+                  Navigator.pop(context);
+                  _loadComments();
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Comentário atualizado')),
+                  );
+                 },
+                  child: Text('Salvar'),
+                  ),
           ],
-        )
+        );
       }
-      )
+      );
   }
 
+  Widget _buildStarRow(double rating){
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: List.generate(5, (index){
+        return Icon(
+          index < rating ? Icons.star : Icons.star_border,
+          color: Colors.amberAccent,
+          size: 18,
+        );
+      }),
+    );
+  }
+
+  
 }
